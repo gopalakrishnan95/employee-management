@@ -1,0 +1,55 @@
+<div class="form-container">
+  <h1>Add Employee</h1>
+
+  <form [formGroup]="employeeForm" (ngSubmit)="saveEmployee()">
+    <!-- Name -->
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+
+      <input matInput type="text" formControlName="name" />
+
+      @if (employeeForm.controls.name.hasError('required')) {
+        <mat-error>Name is required</mat-error>
+      }
+
+      @if (employeeForm.controls.name.hasError('minlength')) {
+        <mat-error>Name must be at least 2 characters</mat-error>
+      }
+    </mat-form-field>
+
+    <!-- Email -->
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+
+      <input matInput type="email" formControlName="email" />
+
+      @if (employeeForm.controls.email.hasError('required')) {
+        <mat-error>Email is required</mat-error>
+      }
+
+      @if (employeeForm.controls.email.hasError('email')) {
+        <mat-error>Enter a valid email</mat-error>
+      }
+    </mat-form-field>
+
+    <!-- Department -->
+    <mat-form-field appearance="outline">
+      <mat-label>Department</mat-label>
+
+      <input matInput type="text" formControlName="department" />
+
+      @if (employeeForm.controls.department.hasError('required')) {
+        <mat-error>Department is required</mat-error>
+      }
+    </mat-form-field>
+
+    <!-- Buttons -->
+    <div class="form-actions">
+      <button mat-button type="button" routerLink="/employees">Cancel</button>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="employeeForm.invalid">
+        Save
+      </button>
+    </div>
+  </form>
+</div>
